@@ -41,6 +41,7 @@ placa varchar(80) not null unique,
 cor varchar(50) not null,
 caracteristicas TEXT,
 imagem VARCHAR(255),
+status ENUM('Manutencao', 'Finalizado') DEFAULT 'Manutencao',
 dataCadastro datetime default current_timestamp,
 
 foreign key (idCliente) references cliente(idCliente)
@@ -50,10 +51,8 @@ create table servico (
 idServico int auto_increment primary key,
 idMecanico int,
 idCarro int,
-dataServico DATETIME,
-valorServico decimal(10, 2),
-status ENUM('Manutencao', 'Finalizado') DEFAULT 'Manutencao',
 descricao TEXT,
+dataServico datetime default current_timestamp,
 
 foreign key (idMecanico) references mecanico(idMecanico),
 foreign key (idCarro) references carro(idCarro)
@@ -79,14 +78,13 @@ insert into cliente (nome, telefone, email, cpf, endereco) values
 ('Carlos Souza', '11988887777', 'carlos@gmail.com', '123.456.789-00', 'Rua A, 123, São Paulo'),
 ('Ana Lima', '11977776666', 'ana.lima@hotmail.com', '987.654.321-00', 'Av. B, 456, São Paulo');
 
-insert into carro (idCliente, modelo, fabricante, ano, placa, cor, caracteristicas, imagem) values
-(1, 'Civic EXL', 'Honda', 2020, 'ABC1D23', 'Prata', 'Motor 2.0, câmbio automático, teto solar, bancos de couro', 'civic2020.jpg'),
-(2, 'Onix LTZ', 'Chevrolet', 2019, 'XYZ9Z99', 'Preto', 'Motor 1.4, completo, sensor de estacionamento, mídia touch', 'onix2019.jpg'),
-(1, 'Golf GTI', 'Volkswagen', 2018, 'GTI2025', 'Vermelho', 'Motor 2.0 turbo, rodas aro 18, faróis full LED, teto solar', 'golfgti2018.jpg');
+insert into carro (idCliente, modelo, fabricante, ano, placa, cor, caracteristicas, imagem, status) values
+(1, 'Civic EXL', 'Honda', 2020, 'ABC1D23', 'Prata', 'Troca de Óleo e Alinhamento', 'civic2020.jpg', 'Finalizado'),
+(2, 'Onix LTZ', 'Chevrolet', 2019, 'XYZ9Z99', 'Preto', 'Problema no cambio', 'onix2019.jpg', 'Manutencao'),
+(1, 'Golf GTI', 'Volkswagen', 2018, 'GTI2025', 'Vermelho', 'Fazer Stage 2', 'golfgti2018.jpg', 'Manutencao');
 
-insert into servico (idMecanico, idCarro, dataServico, valorServico, status, descricao) values
-(1, 1, '2025-05-10 08:30:00', 1200.00, 'Finalizado' , 'Troca de pastilhas de freio dianteiras, alinhamento e balanceamento realizados.'),
-(1, 2, '2025-05-11 09:00:00', 850.00, 'Manutencao', 'Apenas troca de Óleo');
+insert into servico (idMecanico, idCarro, dataServico, descricao) values
+(1, 1, '2025-05-10 08:30:00', 'Troca de pastilhas de freio dianteiras, alinhamento e balanceamento realizados.');
 
 insert into servico_item (idServico, descricao, valor) values
 (1, 'Troca de pastilhas de freio dianteiras', 300.00),

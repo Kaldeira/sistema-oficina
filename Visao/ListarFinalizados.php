@@ -21,12 +21,15 @@
         require_once "../Modelo/DAO/ClassClienteDAO.php";
         require_once "../Modelo/ClassServico.php";
         require_once "../Modelo/DAO/ClassServicoDAO.php";
+        require_once "../Modelo/DAO/ClassMecanicoDAO.php";
 
 
         $classClienteDAO = new ClassClienteDAO();
         $classServicoDAO = new ClassServicoDAO();
         $classCarroDAO = new ClassCarroDAO();
+        $classMecanicoDAO = new ClassMecanicoDAO();
         $carros = $classCarroDAO->listarCarros();
+        $servicos = $classServicoDAO->listarServicosJoin();
 
         $teste = $classServicoDAO->listarServicosJoin();
 
@@ -36,7 +39,7 @@
             $servico = $classServicoDAO->buscarServicoCarro($carro['idCarro']);
 
             if ($servico) {
-                if ($servico['status'] == 'Manutencao') {
+                if ($carro['status'] == 'Manutencao') {
                     continue;
                 }
             } else {
@@ -48,6 +51,9 @@
             echo '<div class="info">';
             echo '<h2>' . $carro['modelo'] . '</h2>';
 
+            $mecanico = $classMecanicoDAO->buscarMecanico($servico['idMecanico']);
+            echo '<p><strong>Mecanico Responsavel::</strong> ' . $mecanico['nome'] . '</p>';
+
             $cliente = $classClienteDAO->buscarCliente($carro['idCliente']);
             if ($cliente) {
                 echo '<p><strong>Cliente:</strong> ' . $cliente['nome'] . '</p>';
@@ -57,14 +63,14 @@
 
             echo '<p><strong>Placa:</strong> ' . $carro['placa'] . '</p>';
 
-            echo '<p><strong>Entrada:</strong> ' . $servico['dataServico'] . '</p>';
+            echo '<p><strong>Finalizado:</strong> ' . $servico['dataServico'] . '</p>';
             echo '<br>';
             echo '<h3>Descrição da Manutenção:</h3> <p align="left"> ' . $servico['descricao'] . '</p>';
             // echo '<br>';
             //   echo '<p><strong>Valor Total:</strong> ' . $servico['valorServico']  . '</p>';
             echo '</div>';
 
-            echo '<a href="ListarRelatorio.php?idex=' .$servico['idServico'] . '"><button>Ver Relatorio</button></a>';
+            echo '<a href="ListarRelatorio.php?idex=' . $servico['idServico'] . '"><button>Ver Relatorio</button></a>';
 
             /*if ($carro['status'] == 'disponivel') {
                 echo '<button>Vender</button>';

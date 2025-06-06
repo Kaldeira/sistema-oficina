@@ -26,6 +26,51 @@ class ClassCarroDAO
         }
     }
 
+    public function alterarCarro(ClassCarro $alterarCarro)
+    {
+        $imagem = 0;
+        try {   
+            $pdo = Conexao::getInstance();
+
+            if ($alterarCarro->getImagem() != null && !empty($alterarCarro->getImagem())) {
+                $imagem = $alterarCarro->getImagem();
+            } else {
+                // Se a imagem não for alterada, mantenha o valor atual
+                $carroExistente = $this->buscarCarro($alterarCarro->getIdCarro());
+                $imagem = $carroExistente['imagem'];
+            }
+
+            $sql = "UPDATE carro SET modelo = ?, fabricante = ?, ano = ?, placa = ?, cor = ?, caracteristicas = ?, imagem = ? WHERE idCarro = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(1, $alterarCarro->getModelo());
+            $stmt->bindValue(2, $alterarCarro->getFabricante());
+            $stmt->bindValue(3, $alterarCarro->getAno());
+            $stmt->bindValue(4, $alterarCarro->getPlaca());
+            $stmt->bindValue(5, $alterarCarro->getCor());
+            $stmt->bindValue(6, $alterarCarro->getCaracteristicas());
+            $stmt->bindValue(7, $imagem);
+            $stmt->bindValue(8, $alterarCarro->getIdCarro());
+
+            return $stmt->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function alterarStatusCarro($idCarro, $status)
+    {
+        try {
+            $pdo = Conexao::getInstance();
+            $sql = "UPDATE carro SET status = :status WHERE idCarro = :idCarro";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':status', $status);
+            $stmt->bindValue(':idCarro', $idCarro);
+            return $stmt->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
     public function listarCarros()
     {
         try {
@@ -71,9 +116,9 @@ class ClassCarroDAO
 
     public function deletarCarro($id)
     {
-         try {
+        try {
             $pdo = Conexao::getInstance();
-            $sql = "DELETE * FROM carro WHERE idCarro = :id";
+            $sql = "DELETE FROM carro WHERE idCarro = :id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->execute();

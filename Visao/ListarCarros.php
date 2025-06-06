@@ -19,13 +19,27 @@
         require_once "../Modelo/DAO/ClassCarroDAO.php";
         require_once "../Modelo/ClassCliente.php";
         require_once "../Modelo/DAO/ClassClienteDAO.php";
+        require_once "../Modelo/ClassServico.php";
+        require_once "../Modelo/DAO/ClassServicoDAO.php";
+
+
 
         $classCarroDAO = new ClassCarroDAO();
         $carros = $classCarroDAO->listarCarros();
 
         $classClienteDAO = new ClassClienteDAO();
+        $classServicoDAO = new ClassServicoDAO();
 
         foreach ($carros as $carro) {
+
+            $servico = $classServicoDAO->buscarServicoCarro($carro['idCarro']);
+
+            if ($servico) {
+                if ($carro['status'] == 'Finalizado') {
+                    continue;
+                }
+            }
+
             echo '<div class="card">';
             echo '<img src="imagens/' . $carro['imagem'] . '" alt="' . $carro['modelo'] . '">';
             echo '<div class="info">';
@@ -47,9 +61,13 @@
             echo '<p><strong>Características:</strong> ' . $carro['caracteristicas'] . '</p>';
             echo '</div>';
             //echo '<button>Vender</button>';
-            echo '<a href="" class="btn btn-editar">Finalizar</a>';
-            echo '<a href="AlterarCarro.php?idex=' . $carro['idCarro'] . '"class="btn btn-editar">Editar</a>';
-            echo '<a href="" class="btn btn-editar">Excluir</a>';
+            echo '<div class="botoes">';
+            echo '<a href="FormRelatorio.php?idex=' . $carro['idCarro'] . '" class="btn-finalizar">Finalizar</a>';
+            echo '<a href="AlterarCarro.php?idex=' . $carro['idCarro'] . '" class="btn-editar">Editar</a>';
+            echo '<a href="../Controle/ControleCarro.php?ACAO=excluirCarro&idex=' . $carro['idCarro'] . '" class="btn-excluir" onclick="return confirm(\'Tem certeza que deseja excluir este carro?\')">Excluir</a>';
+            echo '</div>';
+
+
             /*if ($carro['status'] == 'disponivel') {
                 echo '<button>Vender</button>';
             } else {

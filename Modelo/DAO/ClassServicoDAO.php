@@ -7,12 +7,11 @@ class ClassServicoDAO
     {
         try {
             $pdo = Conexao::getInstance();
-            $sql = "INSERT INTO servico (idMecanico, idCarro, descricao) values (?,?,?)";
+            $sql = "INSERT INTO servico (idMecanico, idCarro, descricao) values (?,?,?,?)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(1, $servico->getIdMecanico());
             $stmt->bindValue(2, $servico->getIdCarro());
-            $stmt->bindValue(5, $servico->getStatus());
-            $stmt->bindValue(6, $servico->getDescricao());
+            $stmt->bindValue(3, $servico->getDescricao());
             $stmt->execute();
             return TRUE;
         } catch (PDOException $exc) {
@@ -20,16 +19,32 @@ class ClassServicoDAO
         }
     }
 
-    public function cadastrarServico(ClassServico $servico, $idCarro)
+    public function inserirServico($idCarro, $idMecanico, $descricao)
     {
         try {
             $pdo = Conexao::getInstance();
-            $sql = "INSERT INTO servico (idMecanico, idCarro, descricao, idCarro) values (?,?,?,?)";
+            $sql = "INSERT INTO servico (idCarro, idMecanico, descricao) VALUES (:idCarro, :idMecanico, :descricao)";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(1, $servico->getIdMecanico());
-            $stmt->bindValue(2, $servico->getIdCarro());
-            $stmt->bindValue(3, $servico->getDescricao());
-            $stmt->bindValue(4, $idCarro);
+            $stmt->bindValue(':idCarro', $idCarro);
+            $stmt->bindValue(':idMecanico', $idMecanico);
+            $stmt->bindValue(':descricao', $descricao);
+            $stmt->execute();
+            return $pdo->lastInsertId(); // Retorna o id do serviço inserido
+        } catch (PDOException $e) {
+            echo "Erro ao inserir serviço: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function inserirItem(ClassServicoItem $item)
+    {
+        try {
+            $pdo = Conexao::getInstance();
+            $sql = "INSERT INTO servico_item (idServico, descricao, valor) VALUES (:idServico, :descricao, :valor)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':idServico', $item->getIdServico());
+            $stmt->bindValue(':descricao', $item->getDescricao());
+            $stmt->bindValue(':valor', $item->getValor());
             $stmt->execute();
             return TRUE;
         } catch (PDOException $exc) {

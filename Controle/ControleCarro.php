@@ -14,7 +14,7 @@ $caracteristicas = @$_POST['caracteristicas'];
 $acao = $_GET['ACAO'];
 
 //$novoCarro = new ClassCarro();
-$novoCarro = new ClassServico();
+$novoCarro = new ClassCarro();
 $novoCarro->setIdCarro($id);
 $novoCarro->setModelo($modelo);
 $novoCarro->setFabricante($fabricante);
@@ -23,15 +23,16 @@ $novoCarro->setPlaca($placa);
 $novoCarro->setCor($cor);
 $novoCarro->setIdCliente($idCliente);
 $novoCarro->setCaracteristicas($caracteristicas);
-$novoCarro->setDescricao(@$_POST['descricao']);
-$novoCarro->setIdMecanico(@$_POST['mecanico']);
+//$novoCarro->setDescricao(@$_POST['descricao']);
+//$novoCarro->setIdMecanico(@$_POST['mecanico']);
 $novoCarro->setIdCliente(@$_POST['cliente']);
+$novoCarro->setStatus('Manutencao'); // Define o status como 'Manutencao' por padrão
 
 
 if (isset($_FILES['imagem']['name']) && !empty($_FILES['imagem']['name'])) {
     $nomeArquivo = strtolower($_FILES['imagem']['name']);
     $novoNome = md5(time()) . '-' . $nomeArquivo; // gera um novo nome para o arquivo
-    $caminhoRelativo = "../Visao/imagens/" . $novoNome; 
+    $caminhoRelativo = "../Visao/imagens/" . $novoNome;
     $caminhoCompleto = __DIR__ . "/../Visao/imagens/" . $novoNome;
 
     printf("<br>Nome original: %s", $_FILES['imagem']['name']);
@@ -50,6 +51,8 @@ if (isset($_FILES['imagem']['name']) && !empty($_FILES['imagem']['name'])) {
 
 var_dump($novoCarro);
 
+//printf("<br>acao: %s", $acao);
+
 $classCarroDAO = new ClassCarroDAO();
 switch ($acao) {
     case "cadastrarCarro":
@@ -61,13 +64,13 @@ switch ($acao) {
             header('Location:../Visao/CadastroCarro.php?&MSG= Não foi possivel realizar o cadastro!');
         }
         break;
-    /*case 'alterarCarro':
+    case 'alterarCarro':
         //codigo aqui   
         $carro = $classCarroDAO->alterarCarro($novoCarro);
         if ($carro == 1) {
-            header('Location:../index.php?&MSG= Cadastro atualizado com sucesso!');
+            header('Location:../Visao/ListarCarros.php?&MSG= Cadastro atualizado com sucesso!');
         } else {
-            header('Location:../index.php?&MSG= Não foi possivel realizar a atualização!');
+            header('Location:../Visao/AlterarCarro.php?&MSG= Não foi possivel realizar a atualização!');
         }
 
         break;
@@ -75,17 +78,17 @@ switch ($acao) {
     case "excluirCarro":
         if (isset($_GET['idex'])) {
             $idCarro = $_GET['idex'];
+            //echo "<br>idex:" . $idCarro ;
             $classCarroDAO = new ClassCarroDAO();
-            $car = $classCarroDAO->excluirCarros($idCarro);
+            $car = $classCarroDAO->deletarCarro($idCarro);
             if ($car == TRUE) {
-                header('Location:../index.php?PAGINA=listarCarros&MSG= Carro foi excluido com sucesso!');
+                header('Location:../Visao/ListarCarros.php?PAGINA=listarCarros&MSG= Carro foi excluido com sucesso!');
             } else {
-                header('Location:../index.php?PAGINA=listarCarros&MSG=Não foi possivel realizar a exclusão do Carro!');
+                header('Location:../Visao/ListarCarros.php?PAGINA=listarCarros&MSG=Não foi possivel realizar a exclusão do Carro!');
             }
         }
 
-        break;*/
+        break;
     default:
         break;
 }
-?>

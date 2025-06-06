@@ -9,6 +9,7 @@ class ClassCarro {
     private $cor;
     private $caracteristicas;
     private $imagem;
+    private $status;
 
     function getIdCarro() {
         return $this->idCarro;
@@ -36,6 +37,9 @@ class ClassCarro {
     }
     function getImagem() {
         return $this->imagem;
+    }
+    function getStatus() {
+        return $this->status;
     }
 
     
@@ -65,6 +69,9 @@ class ClassCarro {
     }
     function setImagem($imagem) {
         $this->imagem = $imagem;
+    }
+    function setStatus($status) {
+        $this->status = $status;
     }
 
 }

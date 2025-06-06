@@ -33,7 +33,7 @@
 
     //printf("ID: $id");
     //echo "<br>";
-    var_dump($novoCarro);
+   // var_dump($novoCarro);
     ?>
 
     <div class="container">
@@ -60,11 +60,8 @@
             <label for="ano">Ano:</label>
             <input type="number" name="ano" id="ano" min="1900" max="2200" value="<?php echo $novoCarro['ano'] ?>">
 
-            <label for="caracteristicas">Caracteristicas:</label>
-            <textarea style="    padding: 10px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;" name="caracteristicas" id="caracteristicas" placeholder="Caracteristicas sobre o Veiculo..." value="<?php echo $novoCarro['caracteristicas'] ?>"></textarea>
-
-            <label for="descricao">Descricao do Serviço:</label>
-            <textarea style="    padding: 10px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;" name="descricao" id="descricao" placeholder="Descricao sobre o Servico..." value="<?php echo $novoCarro['caracteristicas'] ?>"></textarea>
+            <label for="caracteristicas">Descricao do Serviço:</label>
+            <textarea style="    padding: 10px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;" name="caracteristicas" id="caracteristicas" placeholder="Descricao sobre o Servico..."><?php echo $novoCarro['caracteristicas'] ?></textarea>
 
             <label for="cliente">Cliente:</label>
             <select name="cliente" id="cliente" style="    font-size: 14px; padding: 15px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;">
@@ -76,25 +73,9 @@
                 ?>
             </select>
 
-            <label for="mecanico">Mecanico Responsavel:</label>
-            <select name="mecanico" id="mecanico" style=" font-size: 14px; padding: 15px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;">
-                <?php
-                require_once '../Modelo/DAO/ClassMecanicoDAO.php';
-
-                $DAO = new ClassMecanicoDAO();
-                $mecanicos = $DAO->listarMecanico();
-
-                var_dump($mecanicos);
-
-                foreach ($mecanicos as $mecanico) {
-                    echo "<option value='" . $mecanico['idMecanico'] . "'>" . $mecanico['nome'] . "</option>";
-                }
-                ?>
-            </select>
-
 
             <label for="imagem">Imagem:</label>
-            <input type="file" name="imagem" id="imagem" accept="image/*" required><br><br>
+            <input type="file" name="imagem" id="imagem" accept="image/*"><br><br>
             <button type="submit">Cadastrar Veiculo</button>
         </form>
     </div>
