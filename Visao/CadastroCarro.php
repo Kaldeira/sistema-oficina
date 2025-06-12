@@ -54,23 +54,6 @@
                 ?>
             </select>
 
-            <label for="mecanico">Mecanico Responsavel:</label>
-            <select name="mecanico" id="mecanico" style=" font-size: 14px; padding: 15px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;">
-                <?php
-                require_once '../Modelo/DAO/ClassMecanicoDAO.php';
-
-                $DAO = new ClassMecanicoDAO();
-                $mecanicos = $DAO->listarMecanico();
-
-                var_dump($mecanicos);
-
-                foreach ($mecanicos as $mecanico) {
-                    echo "<option value='" . $mecanico['idMecanico'] . "'>" . $mecanico['nome'] . "</option>";
-                }
-                ?>
-            </select>
-
-
             <label for="imagem">Imagem:</label>
             <input type="file" name="imagem" id="imagem" accept="image/*" required><br><br>
             <button type="submit">Cadastrar Veiculo</button>

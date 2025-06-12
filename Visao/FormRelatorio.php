@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Itens ao Relatório</title>
-    <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/form.css">
     <style>
         .form-container {
             width: 90%;
@@ -113,7 +113,7 @@
     <div class="form-container">
 
         <form method="post" action="../Controle/ControleServico.php?ACAO=cadastrarServico">
-            <h1>Adicionar Itens ao Relatório</h1>
+            <h1 class="titulo">Adicionar Itens ao Relatório</h1>
 
             <label for="descricaoServico">Descrição do Serviço</label>
             <textarea name="descricaoServico" id="descricaoServico" rows="4" required></textarea>

@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Clientes</title>
-    <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/lista.css">
 </head>
 
 <body>
-    <h1>Equipe Mecanica</h1>
-
     <?php
     include 'Menu.php';
     ?>
+
+    <h1 class="titulo">Equipe Mecanica</h1>
 
     <table class="tabela-clientes">
         <thead>
@@ -31,7 +31,7 @@
             $classMecanicoDAO = new ClassMecanicoDAO();
             $mecanicos = $classMecanicoDAO->listarMecanico();
 
-            var_dump($mecanicos);
+            //var_dump($mecanicos);
 
             foreach ($mecanicos as $mecanico) {
                 echo '<tr>';

@@ -53,6 +53,10 @@ var_dump($novoCarro);
 
 //printf("<br>acao: %s", $acao);
 
+$urlAlt = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/AlterarCarro.php';
+$urlCad = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/CadastroCarro.php';
+$url = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/ListarCarros.php';
+
 $classCarroDAO = new ClassCarroDAO();
 switch ($acao) {
     case "cadastrarCarro":
@@ -61,7 +65,9 @@ switch ($acao) {
             header('Location:../Visao/ListarCarros.php?&MSG= Cadastro realizado com sucesso!');
             //$servico = $classCarroDAO->cadastrarServico($novoCarro);
         } else {
-            header('Location:../Visao/CadastroCarro.php?&MSG= Não foi possivel realizar o cadastro!');
+            echo "<script> alert('Não foi possivel realizar o cadastro!');
+        window.location.href = '$urlCad';
+      </script>";
         }
         break;
     case 'alterarCarro':
@@ -70,7 +76,9 @@ switch ($acao) {
         if ($carro == 1) {
             header('Location:../Visao/ListarCarros.php?&MSG= Cadastro atualizado com sucesso!');
         } else {
-            header('Location:../Visao/AlterarCarro.php?&MSG= Não foi possivel realizar a atualização!');
+            echo "<script> alert('Não foi possível alterar!');
+        window.location.href = '$urlAlt';
+      </script>";
         }
 
         break;
@@ -84,8 +92,10 @@ switch ($acao) {
             if ($car == TRUE) {
                 header('Location:../Visao/ListarCarros.php?PAGINA=listarCarros&MSG= Carro foi excluido com sucesso!');
             } else {
-                header('Location:../Visao/ListarCarros.php?PAGINA=listarCarros&MSG=Não foi possivel realizar a exclusão do Carro!');
+                echo "<script> alert('Não foi possível Deletar!'); window.location.href = '$url'; </script>";
             }
+        } else {
+            echo "<script> alert('Não foi possível Deletar!'); window.location.href = '$url'; </script>";
         }
 
         break;

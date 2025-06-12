@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Clientes</title>
-    <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/lista.css">
 </head>
 
 <body>
-    <h1>Lista de Clientes</h1>
-
     <?php
     include 'Menu.php';
     ?>
+
+    <h1 class="titulo">Lista de Clientes</h1>
 
     <table class="tabela-clientes">
         <thead>

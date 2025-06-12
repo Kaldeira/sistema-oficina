@@ -6,6 +6,7 @@ class ClassUsuario
     private $login;
     private $senha;
     private $email;
+    private $nivel;
 
     function getIdUsuario()
     {
@@ -27,6 +28,11 @@ class ClassUsuario
         return $this->email;
     }
 
+    function getnivel()
+    {
+        return $this->nivel;
+    }
+
     function setIdUsuario($idUsuario)
     {
         $this->idUsuario = $idUsuario;
@@ -45,6 +51,11 @@ class ClassUsuario
     function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    function setnivel($nivel)
+    {
+        $this->nivel = $nivel;
     }
 }
 ?>

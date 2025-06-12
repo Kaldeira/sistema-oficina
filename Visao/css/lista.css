@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -17,10 +19,24 @@ body {
     overflow-x: auto;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 28px;
+.titulo {
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-size: 24px;
     text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff0022c4, transparent);
 }
 
 .tabela-clientes {

@@ -35,6 +35,16 @@
     background: linear-gradient(90deg, transparent, #ff0022c4, transparent);
 }
 
+.sidebar p {
+    color: white;
+    font-weight: 100;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    padding-top: 0.5rem;
+}
+
+
 .sidebar ul {
     list-style: none;
     padding: 0;

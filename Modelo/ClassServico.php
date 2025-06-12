@@ -1,15 +1,13 @@
 <?php
 require_once "ClassCarro.php";
 
-Class ClassServico extends ClassCarro
+Class ClassServico 
 {
     private $idServico;
     private $idMecanico;
     private $idCarro;
     private $descricao;
     private $dataServico;
-    private $valorServico;
-    private $status;
 
     function getIdServico()
     {
@@ -26,11 +24,6 @@ Class ClassServico extends ClassCarro
         return $this->descricao;
     }
 
-    function getValor()
-    {
-        return $this->valorServico;
-    }
-
     function getDataServico()
     {
         return $this->dataServico;
@@ -38,10 +31,6 @@ Class ClassServico extends ClassCarro
     function getIdMecanico()
     {
         return $this->idMecanico;
-    }
-    function getStatus()
-    {
-        return $this->status;
     }
 
     
@@ -60,11 +49,6 @@ Class ClassServico extends ClassCarro
         $this->descricao = $descricao;
     }
 
-    function setValor($valorServico)
-    {
-        $this->valorServico = $valorServico;
-    }
-
     function setDataServico($dataServico)
     {
         $this->dataServico = $dataServico;
@@ -73,10 +57,6 @@ Class ClassServico extends ClassCarro
     function setIdMecanico($idMecanico)
     {
         $this->idMecanico = $idMecanico;
-    }
-    function setStatus($status)
-    {
-        $this->status = $status;
     }
 }
 

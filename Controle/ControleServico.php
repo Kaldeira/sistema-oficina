@@ -24,26 +24,31 @@ $novoCarro->setIdCarro($id);
 $novoCarro->setDescricao($descricaoServico);
 $novoCarro->setIdMecanico($idMecanico);
 
+$finalizado = true;
 
 var_dump($novoCarro);
 
 //printf("<br>acao: %s", $acao);
+
+$url = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/ListarCarros.php';
 
 
 $servicoDAO = new ClassServicoDAO();
 $idServico = $servicoDAO->inserirServico($idCarro, $idMecanico, $descricaoServico);
 
 if (!$idServico) {
-    echo "Erro ao inserir o serviço.";
-    exit;
+    echo "<script> alert('Não foi possível finalizar o carro, erro no serviço!');
+        window.location.href = '$url';
+      </script>";
 }
 
 $carroDAO = new ClassCarroDAO();
 $alterarStatus = $carroDAO->alterarStatusCarro($idCarro, 'Finalizado');
 
 if (!$alterarStatus) {
-    echo "Erro ao alterar status.";
-    exit;
+    echo "<script> alert('Não foi possível finalizar o carro, erro no status!');
+        window.location.href = '$url';
+      </script>";
 }
 
 for ($i = 0; $i < count($descricoes); $i++) {
@@ -52,5 +57,18 @@ for ($i = 0; $i < count($descricoes); $i++) {
     $item->setDescricao($descricoes[$i]);
     $item->setValor($valores[$i]);
 
-    $servicoDAO->inserirItem($item);
+    if ($servicoDAO->inserirItem($item)) {
+        continue;
+    } else {
+        $finalizado = false;
+        break;
+    }
+}
+
+if ($finalizado) {
+    header('Location:../Visao/ListarFinalizados.php?&MSG= Carro Finalizado com sucesso!');
+} else {
+    echo "<script> alert('Não foi possível finalizar o carro!');
+        window.location.href = '$url';
+      </script>";
 }

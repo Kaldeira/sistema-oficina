@@ -12,6 +12,8 @@
     include 'Menu.php';
     ?>
 
+    <h1 class="titulo">Veículos Finalizados</h1>
+
     <div class="carros-container">
 
         <?php
@@ -33,7 +35,7 @@
 
         $teste = $classServicoDAO->listarServicosJoin();
 
-        var_dump($teste);
+        //var_dump($teste);
         foreach ($carros as $carro) {
 
             $servico = $classServicoDAO->buscarServicoCarro($carro['idCarro']);

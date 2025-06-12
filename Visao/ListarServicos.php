@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Relatorios de Manutençao</title>
-    <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/lista.css">
 </head>
 
 <body>
-    <h1>Historico de Serviços</h1>
-
     <?php
     include 'Menu.php';
     ?>
+
+    <h1 class="titulo">Historico de Serviços</h1>
 
     <table class="tabela-clientes">
         <thead>

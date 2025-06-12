@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <title>Tela de Cadastro</title>
     <link href="css/form.css" rel="stylesheet">
+    <style>
+        @media (min-width: 1280px) and (max-width: 1380px) {
+            body {
+                   margin-left: 5%;
+            }
+        }
+    </style>
 </head>
 
 <body>

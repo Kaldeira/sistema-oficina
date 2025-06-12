@@ -23,7 +23,7 @@ class ClassUsuarioDAO
     {
         try {
             $pdo = Conexao::getInstance();
-            $sql = "SELECT idUsuario, login, senha FROM usuario WHERE login =:login AND senha =:senha";
+            $sql = "SELECT idUsuario, login, senha, nivel FROM usuario WHERE login =:login AND senha =:senha";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':login', $usuario->getLogin());
             $stmt->bindValue(':senha', $usuario->getSenha());

@@ -7,7 +7,8 @@ idUsuario int auto_increment primary key,
 login varchar(80) not null unique,
 senha varchar(80) not null,
 email varchar(120) not null,
-nivel enum('admin', 'mecanico') not null default 'mecanico',
+nivel tinyint not null default 2,
+CHECK (nivel IN (1, 2)),
 dataCadastro datetime default current_timestamp
 );
 
@@ -65,11 +66,13 @@ foreign key (idServico) references servico(idServico)
 );
 
 insert into usuario (login, senha, email, nivel) values
-('admin', 'senha123', 'admin@admin.com', 'admin'),
-('marcosmec', '1234', 'marcos@oficina.com', 'mecanico');
+('gerente', 'senha123', 'gerente@oficina.com', 1),
+('marcos', 'senha', 'marcos@oficina.com', 2);
 
 insert into mecanico (nome, telefone) values
-('João da Silva', '11999998888');
+('João da Silva', '11999998888'),
+('Maria Oliveira', '11988885555'),
+('Pedro Santos', '11977776666');
 
 insert into cliente (nome, telefone, email, cpf, endereco) values
 ('Carlos Souza', '11988887777', 'carlos@gmail.com', '123.456.789-00', 'Rua A, 123, São Paulo'),
@@ -78,16 +81,21 @@ insert into cliente (nome, telefone, email, cpf, endereco) values
 insert into carro (idCliente, modelo, fabricante, ano, placa, cor, caracteristicas, imagem, status) values
 (1, 'Civic EXL', 'Honda', 2020, 'ABC1D23', 'Prata', 'Troca de Óleo e Alinhamento', 'civic2020.jpg', 'Finalizado'),
 (2, 'Onix LTZ', 'Chevrolet', 2019, 'XYZ9Z99', 'Preto', 'Problema no cambio', 'onix2019.jpg', 'Manutencao'),
-(1, 'Golf GTI', 'Volkswagen', 2018, 'GTI2025', 'Vermelho', 'Fazer Stage 2', 'golfgti2018.jpg', 'Manutencao');
+(1, 'Golf GTI', 'Volkswagen', 2018, 'GTI2025', 'Vermelho', 'Fazer Stage 2', 'golfgti2018.jpg', 'Manutencao'),
+(2, 'LaFerrari', 'Ferarri', 2021, 'FER1234', 'Vermelho', 'Troca de pastilhas de freio dianteiras', 'laferrari.jpg', 'Finalizado'),
+(1, 'Corolla Altis', 'Toyota', 2022, 'CORA222', 'Branco', 'Revisão completa', 'corolla2022.jpg', 'Manutencao');
 
 insert into servico (idMecanico, idCarro, dataServico, descricao) values
-(1, 1, '2025-05-10 08:30:00', 'Troca de pastilhas de freio dianteiras, alinhamento e balanceamento realizados.');
+(1, 1, '2025-05-10 08:30:00', 'Troca de pastilhas de freio dianteiras, alinhamento e balanceamento realizados.'),
+(2, 4, '2025-05-13 11:00:00', 'Troca de pastilhas de freio dianteiras na LaFerrari.');
 
 insert into servico_item (idServico, descricao, valor) values
 (1, 'Troca de pastilhas de freio dianteiras', 300.00),
 (1, 'Alinhamento', 150.00),
 (1, 'Balanceamento', 100.00),
-(1, 'Mão de obra', 300.00);
+(1, 'Mão de obra', 300.00),
+(2, 'Troca de pastilhas de freio dianteiras', 500.00),
+(2, 'Mão de obra', 200.00);
 
 
 select * from carro;	

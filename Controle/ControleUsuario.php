@@ -5,6 +5,7 @@ require_once "../Modelo/DAO/ClassUsuarioDAO.php";
 $id = @$_POST['idex'];
 $login = @$_POST['login'];
 $senha = @$_POST['senha'];
+$email = @$_POST['email'];
 $acao = $_GET['ACAO'];
 
 
@@ -12,6 +13,8 @@ $novoUsuario = new ClassUsuario();
 $novoUsuario->setIdUsuario($id);
 $novoUsuario->setLogin($login);
 $novoUsuario->setSenha($senha);
+$novoUsuario->setEmail($email);
+$novoUsuario->setnivel(2); // Definindo o nível como 2 (Usuário comum)
 
 var_dump($novoUsuario);
 
@@ -31,6 +34,7 @@ switch ($acao) {
             session_start();
             $_SESSION['idUsuario'] = $usuario['idUsuario'];
             $_SESSION['login'] = $usuario['login'];
+            $_SESSION['nivel'] = $usuario['nivel'];
             header('Location:../Visao/ListarCarros.php?&MSG= Login realizado com sucesso!');
         } else {
             echo "<script>
@@ -38,6 +42,12 @@ switch ($acao) {
                 window.location.href = '../index.php';
               </script>";
         }
+        break;
+    case "sair":
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location:../index.php?&MSG= Você saiu com sucesso!");
         break;
     default:
         break;
