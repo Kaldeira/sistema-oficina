@@ -61,7 +61,7 @@
                 echo '<td>' . $cliente['dataCadastro'] . '</td>';
                 echo '<td>
                     <a href="AlterarCliente.php?idex=' . $cliente['idCliente'] . '"class="btn btn-editar">Editar</a>
-                    <button class="btn btn-excluir">Excluir</button>
+                    <a href="../Controle/ControleCliente.php?ACAO=deletarCliente&idex=' . $cliente['idCliente'] . '" class="btn btn-excluir" onclick="return confirm(\'Tem certeza que deseja excluir este cliente?\')">Excluir</a>
                     </td>';
                 echo '</tr>';
             }

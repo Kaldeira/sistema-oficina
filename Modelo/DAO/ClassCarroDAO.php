@@ -29,7 +29,7 @@ class ClassCarroDAO
     public function alterarCarro(ClassCarro $alterarCarro)
     {
         $imagem = 0;
-        try {   
+        try {
             $pdo = Conexao::getInstance();
 
             if ($alterarCarro->getImagem() != null && !empty($alterarCarro->getImagem())) {
@@ -122,9 +122,10 @@ class ClassCarroDAO
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->rowCount() > 0; // retorna true se deletou alguma linha
         } catch (PDOException $exc) {
             echo $exc->getMessage();
+            return false;
         }
     }
 }

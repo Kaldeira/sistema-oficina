@@ -9,7 +9,7 @@ $acao = $_GET['ACAO'];
 
 
 $novoUsuario = new ClassUsuario();
-$novoUsuario->setIdUsuario($id);    
+$novoUsuario->setIdUsuario($id);
 $novoUsuario->setLogin($login);
 $novoUsuario->setSenha($senha);
 
@@ -31,12 +31,14 @@ switch ($acao) {
             session_start();
             $_SESSION['idUsuario'] = $usuario['idUsuario'];
             $_SESSION['login'] = $usuario['login'];
-            header('Location:../index.php?&MSG= Login realizado com sucesso!');
+            header('Location:../Visao/ListarCarros.php?&MSG= Login realizado com sucesso!');
         } else {
-            header('Location:../index.php?&MSG= Não foi possivel realizar o login!');
+            echo "<script>
+                alert('Não foi possível realizar o login. Verifique suas credenciais!');
+                window.location.href = '../index.php';
+              </script>";
         }
         break;
     default:
         break;
 }
-?>

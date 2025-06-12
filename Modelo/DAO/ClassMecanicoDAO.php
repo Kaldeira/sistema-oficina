@@ -43,4 +43,34 @@ class ClassMecanicoDAO
             echo $exc->getMessage();
         }
     }
+
+    public function alterarMecanico(ClassMecanico $mecanico)
+    {
+        try {
+            $pdo = Conexao::getInstance();
+            $sql = "UPDATE mecanico SET nome=?, telefone=? WHERE idMecanico=?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(1, $mecanico->getNome());
+            $stmt->bindValue(2, $mecanico->getTelefone());
+            $stmt->bindValue(6, $mecanico->getIdMecanico());
+            return $stmt->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function deletar($id)
+    {
+        try {
+            $pdo = Conexao::getInstance();
+            $sql = "DELETE FROM mecanico WHERE idMecanico = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+            return $stmt->rowCount() > 0; // retorna true se deletou alguma linha
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+            return false;
+        }
+    }
 }

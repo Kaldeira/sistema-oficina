@@ -11,7 +11,7 @@
 <body>
 
     <div class="container">
-        <form method="post" action="../Controle/ControleUsuario.php?ACAO=fazerLogin">
+        <form method="post" action="Controle/ControleUsuario.php?ACAO=fazerLogin">
             <label for="login">Usuário:</label>
             <input type="text" name="login" id="login" required>
 

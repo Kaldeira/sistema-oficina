@@ -37,7 +37,7 @@
             <label for="ano">Ano:</label>
             <input type="number" name="ano" id="ano" min="1900" max="2200" required>
 
-            <label for="caracteristicas">Caracteristicas do Problema:</label>
+            <label for="caracteristicas">Descrição do Serviço:</label>
             <textarea style="    padding: 10px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;" name="caracteristicas" id="caracteristicas" placeholder="Caracteristicas sobre o Veiculo..."></textarea>
 
             <label for="cliente">Cliente:</label>

@@ -13,12 +13,9 @@ dataCadastro datetime default current_timestamp
 
 create table mecanico (
 idMecanico int auto_increment primary key,
-idUsuario int not null,
 nome varchar(80) not null,
 telefone varchar(20) not null,
-dataCadastro datetime default current_timestamp,
-
-foreign key (idUsuario) references usuario(idUsuario)
+dataCadastro datetime default current_timestamp
 );
 
 create table cliente (
@@ -71,8 +68,8 @@ insert into usuario (login, senha, email, nivel) values
 ('admin', 'senha123', 'admin@admin.com', 'admin'),
 ('marcosmec', '1234', 'marcos@oficina.com', 'mecanico');
 
-insert into mecanico (idUsuario, nome, telefone) values
-(1, 'João da Silva', '11999998888');
+insert into mecanico (nome, telefone) values
+('João da Silva', '11999998888');
 
 insert into cliente (nome, telefone, email, cpf, endereco) values
 ('Carlos Souza', '11988887777', 'carlos@gmail.com', '123.456.789-00', 'Rua A, 123, São Paulo'),

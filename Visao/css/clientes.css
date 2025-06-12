@@ -1,78 +1,112 @@
- * {
-     box-sizing: border-box;
-     font-family: 'Roboto', sans-serif;
-     margin: 0;
-     padding: 0;
- }
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
- body {
-     background-color: #121212;
-     color: #e0e0e0;
-     padding: 100px;
-     margin-left: 300px;
- }
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 20px;
+    margin-left: 280px; 
+}
 
- h1 {
-     margin-bottom: 20px;
-     font-size: 28px;
-     text-align: center;
- }
+.main-content {
+    max-width: 100%;
+    overflow-x: auto;
+}
 
- .tabela-clientes {
-     width: 100%;
-     border-collapse: collapse;
-     background-color: #1e1e1e;
-     border-radius: 8px;
-     overflow: hidden;
-     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
- }
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+}
 
- .tabela-clientes th,
- .tabela-clientes td {
-     padding: 12px 15px;
-     text-align: left;
-     border-bottom: 1px solid #333;
- }
+.tabela-clientes {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
 
- .tabela-clientes th {
-     background-color: #2c2c2c;
-     color: #ffffff;
- }
+.tabela-clientes th,
+.tabela-clientes td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    word-wrap: break-word;
+}
 
- .tabela-clientes td {
-     color: #dddddd;
-     font-size: 14px;
- }
+.tabela-clientes th {
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
 
- .tabela-clientes tr:hover {
-     background-color: #1a1a1a;
- }
+.tabela-clientes td {
+    color: #dddddd;
+    font-size: 14px;
+    min-width: 130px;
+}
 
- .btn {
-     padding: 6px 12px;
-     border: none;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 13px;
-     margin-right: 6px;
- }
+.tabela-clientes tr:hover {
+    background-color: #1a1a1a;
+}
 
- .btn-editar {
-     background-color: #007bff;
-     color: white;
-     text-decoration: none;
- }
+.btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    margin: 4px 2px;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+}
 
- .btn-excluir {
-     background-color: #dc3545;
-     color: white;
-     text-decoration: none;
- }
+.btn-editar {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+}
 
- .btn-editar:hover {
-     background-color: #0056b3;
- }
+.btn-excluir {
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+}
 
- .btn-excluir:hover {
-     background-color: #b52a38;
- }
+.btn-editar:hover {
+    background-color: #0056b3;
+}
+
+.btn-excluir:hover {
+    background-color: #b52a38;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .tabela-clientes {
+        min-width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 14px;
+        margin: 4px 0;
+    }
+
+    .tabela-clientes td,
+    .tabela-clientes th {
+        padding: 10px;
+        font-size: 13px;
+    }
+}

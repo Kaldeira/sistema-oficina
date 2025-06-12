@@ -65,4 +65,19 @@ class ClassClienteDAO
             echo $exc->getMessage();
         }
     }
+
+     public function deletar($id)
+    {
+      try {
+            $pdo = Conexao::getInstance();
+            $sql = "DELETE FROM cliente WHERE idCliente = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+            return $stmt->rowCount() > 0; // retorna true se deletou alguma linha
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+            return false;
+        }
+    }
 }

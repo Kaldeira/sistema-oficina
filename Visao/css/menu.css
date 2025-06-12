@@ -14,11 +14,25 @@
     font-family: 'Roboto', sans-serif;
 }
 
+
 .sidebar h1 {
-    color: #ffffff;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
     font-size: 24px;
-    margin-bottom: 20px;
     text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.sidebar h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff0022c4, transparent);
 }
 
 .sidebar ul {
