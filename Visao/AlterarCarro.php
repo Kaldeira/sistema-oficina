@@ -11,7 +11,7 @@
 <body>
 
     <?php
-   // include 'Menu.php';
+    include 'Menu.php';
 
     require '../Modelo/ClassCarro.php';
     require '../Modelo/DAO/ClassCarroDAO.php';
