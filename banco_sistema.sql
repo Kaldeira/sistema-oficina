@@ -169,7 +169,3 @@ SELECT s.descricao, si.idItem, si.descricao as descricaoItem, si.valor, c.modelo
         inner join cliente cli on c.idCliente = cli.idCliente
         inner join mecanico mec on s.idMecanico = mec.idMecanico
         where si.idServico = 1;
-        
-        select * from servico;
-        delete from servico where idServico = 1;
-        delete from servico_item where idServico = 1;
