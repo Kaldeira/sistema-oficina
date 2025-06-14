@@ -97,6 +97,30 @@ insert into servico_item (idServico, descricao, valor) values
 (2, 'Troca de pastilhas de freio dianteiras', 500.00),
 (2, 'Mão de obra', 200.00);
 
+DELIMITER //
+
+CREATE PROCEDURE cancelar_servico(IN servicoId INT)
+BEGIN
+    DECLARE carroId INT;
+
+    -- Primeiro, buscar o idCarro desse serviço
+    SELECT idCarro INTO carroId FROM servico WHERE idServico = servicoId;
+
+    -- Caso exista o serviço
+    IF carroId IS NOT NULL THEN
+        -- Apagar os itens do serviço
+        DELETE FROM servico_item WHERE idServico = servicoId;
+
+        -- Apagar o serviço
+        DELETE FROM servico WHERE idServico = servicoId;
+
+        -- Atualizar o status do carro de 'Finalizado' para 'Manutencao'
+        UPDATE carro SET status = 'Manutencao' WHERE idCarro = carroId;
+    END IF;
+END //
+
+DELIMITER ;
+
 
 select * from carro;	
 select * from servico;
@@ -137,3 +161,15 @@ from servico s
 inner join carro c on s.idCarro = c.idCarro
 inner join cliente cli on c.idCliente = cli.idCliente
 inner join mecanico mec on s.idMecanico = mec.idMecanico;
+
+SELECT s.descricao, si.idItem, si.descricao as descricaoItem, si.valor, c.modelo, cli.nome, mec.nome as mecNome
+        from servico s 
+        inner join carro c on s.idCarro = c.idCarro 
+        inner join servico_item si on s.idServico = si.idServico 
+        inner join cliente cli on c.idCliente = cli.idCliente
+        inner join mecanico mec on s.idMecanico = mec.idMecanico
+        where si.idServico = 1;
+        
+        select * from servico;
+        delete from servico where idServico = 1;
+        delete from servico_item where idServico = 1;

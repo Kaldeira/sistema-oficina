@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Carros Finalizados</title>
+    <title>Lista de Finalizados</title>
     <link rel="stylesheet" href="css/showroom.css">
 </head>
 
@@ -54,7 +54,7 @@
             echo '<h2>' . $carro['modelo'] . '</h2>';
 
             $mecanico = $classMecanicoDAO->buscarMecanico($servico['idMecanico']);
-            echo '<p><strong>Mecanico Responsavel::</strong> ' . $mecanico['nome'] . '</p>';
+            echo '<p><strong>Mecanico Responsavel:</strong> ' . $mecanico['nome'] . '</p>';
 
             $cliente = $classClienteDAO->buscarCliente($carro['idCliente']);
             if ($cliente) {

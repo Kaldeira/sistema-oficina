@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Relatorios de Manutençao</title>
+    <title>Relatorios de Serviços</title>
     <link rel="stylesheet" href="css/lista.css">
 </head>
 
@@ -58,6 +58,7 @@
                 echo '<td>' . $servico['mecanico'] . '</td>';
                 echo '<td>
                 <a href="ListarRelatorio.php?idex=' .$servico['idServico'] . '"class="btn btn-editar">Ver Relatorio</a> 
+                  <a href="../Controle/ExcluirServico.php?idex=' .$servico['idServico'] . '"class="btn btn-excluir">Cancelar</a> 
                 </td>';
                 echo '</tr>';
             }

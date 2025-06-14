@@ -106,16 +106,31 @@ class ClassServicoDAO
     {
         try {
             $pdo = Conexao::getInstance();
-            $sql = "SELECT s.descricao, si.idItem, si.descricao as descricaoItem, si.valor, c.modelo, cli.nome 
+            $sql = "SELECT s.descricao, si.idItem, si.descricao as descricaoItem, si.valor, c.modelo, cli.nome, mec.nome as mecNome
         from servico s 
         inner join carro c on s.idCarro = c.idCarro 
         inner join servico_item si on s.idServico = si.idServico 
         inner join cliente cli on c.idCliente = cli.idCliente
+        inner join mecanico mec on s.idMecanico = mec.idMecanico
         where si.idServico = :id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function callExcluirServico($idServico)
+    {
+        try {
+            $pdo = Conexao::getInstance();
+            $sql = "CALL cancelar_servico(:id)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':id', $idServico);
+            $stmt->execute();
+            return TRUE;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }

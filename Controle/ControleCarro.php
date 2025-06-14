@@ -77,7 +77,7 @@ switch ($acao) {
             header('Location:../Visao/ListarCarros.php?&MSG= Cadastro atualizado com sucesso!');
         } else {
             echo "<script> alert('Não foi possível alterar!');
-        window.location.href = '$urlAlt';
+        window.location.href = '$urlAlt?idex=$id';
       </script>";
         }
 

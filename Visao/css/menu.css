@@ -5,45 +5,33 @@
     height: 100vh;
     width: 280px;
     background-color: #1e1e1e;
-    padding: 2.0% 1.4%;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    overflow-y: auto;
 }
-
 
 .sidebar h1 {
     color: white;
-    margin-bottom: 0.6rem;
-    font-weight: 500;
-    font-size: 24px;
     text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
     position: relative;
-    padding-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .sidebar h1::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 25%;
     width: 50%;
     height: 2px;
     background: linear-gradient(90deg, transparent, #ff0022c4, transparent);
 }
-
-.sidebar p {
-    color: white;
-    font-weight: 100;
-    font-size: 18px;
-    text-align: center;
-    position: relative;
-    padding-top: 1.0rem;
-}
-
 
 .sidebar ul {
     list-style: none;
@@ -53,44 +41,35 @@
 }
 
 .sidebar li {
-    margin-bottom: 10px;
-}
-
-.sidebar button {
-    width: 100%;
-    padding: 10px 15px;
-    background-color: transparent;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #e0e0e0;
-    font-size: 16px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    margin-bottom: 12px;
 }
 
 .menu-button {
-    display: block;
-    padding: 2.5% 3.5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 18px;
     background-color: transparent;
     border: 1px solid #333;
-    border-radius: 8px;
+    border-radius: 10px;
     color: #e0e0e0;
-    font-size: 16px;
+    font-size: 17px;
     text-align: left;
-    cursor: pointer;
     text-decoration: none;
     transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* icones usando font awesome */
+.menu-button i {
+    min-width: 20px;
+    text-align: center;
+    font-size: 18px;
 }
 
 .menu-button:hover {
-    background-color: #ff00228f;
-    color: white;
-    border-color: #ff0022;
-}
-
-
-.sidebar button:hover {
     background-color: #ff00228f;
     color: white;
     border-color: #ff0022;
@@ -100,4 +79,93 @@
     border: none;
     border-top: 1px solid #333;
     margin: 15px 0;
+}
+
+.user-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.user-info p {
+    color: white;
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 18px;
+    background-color: #6e0312;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: 0.2s;
+    box-sizing: border-box;
+}
+
+/* icone usando font awesome */
+.logout-button i {
+    min-width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.logout-button:hover {
+    background-color: #8d0215;
+}
+
+/* tela de celular */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+
+    .menu-button,
+    .logout-button {
+        font-size: 17px;
+        padding: 12px 10px;
+    }
+
+    .sidebar h1 {
+        font-size: 22px;
+    }
+}
+
+/* tela de monitor dos tempos dos incas e dos neanderthais */
+@media (max-height: 768px) {
+    .menu-button,
+    .logout-button {
+        font-size: 17px;
+        padding: 10px 10px;
+    }
+}
+
+/* Scrollbar minimalista */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 0, 34, 0.5); 
+    border-radius: 3px;
+}
+
+/* Firefox scrollbar */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 0, 34, 0.5) transparent;
 }

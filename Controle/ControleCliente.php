@@ -40,7 +40,7 @@ switch ($acao) {
             header('Location:../Visao/ListarClientes.php?&MSG= Alteração feita com sucesso!');
         } else {
             echo "<script> alert('Não foi possível alterar!');
-        window.location.href = '$urlAlt';
+        window.location.href = '$urlAlt?idex=$id';
       </script>";
         }
     case 'deletarCliente':

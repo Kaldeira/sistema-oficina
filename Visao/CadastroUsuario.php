@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Tela de Cadastro</title>
+    <title>Cadastro de Usuario</title>
     <link href="css/form.css" rel="stylesheet">
     <style>
         @media (min-width: 1280px) and (max-width: 1380px) {

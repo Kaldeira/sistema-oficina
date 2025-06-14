@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Clientes</title>
+    <title>Equipe Mecanica</title>
     <link rel="stylesheet" href="css/lista.css">
 </head>
 
 <body>
     <?php
     include 'Menu.php';
+
+    //echo "Bem-vindo, " . $_SESSION['nivel'];
     ?>
 
     <h1 class="titulo">Equipe Mecanica</h1>
@@ -20,7 +22,9 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Data Cadastro</th>
-                <th>Ações</th>
+                <?php if ($_SESSION['nivel'] == 1) { ?>
+                    <th>Ações</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -38,10 +42,14 @@
                 echo '<td>' . $mecanico['nome'] . '</td>';
                 echo '<td>' . $mecanico['telefone'] . '</td>';
                 echo '<td>' . $mecanico['dataCadastro'] . '</td>';
-                echo '<td>
+
+                if ($_SESSION['nivel'] == 1) {
+                    echo '<td>
                     <a href="AlterarMecanico.php?idex=' . $mecanico['idMecanico'] . '"class="btn btn-editar">Editar</a>
                     <a href="../Controle/ControleMecanico.php?ACAO=deletarMecanico&idex=' . $mecanico['idMecanico'] . '" class="btn btn-excluir" onclick="return confirm(\'Tem certeza que deseja excluir este mecânico?\')">Excluir</a>
                     </td>';
+                }
+
                 echo '</tr>';
             }
 
