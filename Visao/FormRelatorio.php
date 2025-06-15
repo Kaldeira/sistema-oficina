@@ -95,7 +95,7 @@
     require_once "../Modelo/DAO/ClassCarroDAO.php";
 
     $id = $_GET['idex'];
-    var_dump($id);
+    //var_dump($id);
 
     $classClienteDAO = new ClassClienteDAO();
     $clientes = $classClienteDAO->listarClientes();
@@ -104,7 +104,7 @@
     $carro = $classCarroDAO->buscarCarro($id);
     $cliente = $classClienteDAO->buscarCliente($carro['idCliente']);
 
-    var_dump($carro);
+    //var_dump($carro);
 
     ?>
 

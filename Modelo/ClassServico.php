@@ -1,7 +1,7 @@
 <?php
 require_once "ClassCarro.php";
 
-Class ClassServico 
+Class ClassServico extends ClassCarro
 {
     private $idServico;
     private $idMecanico;
