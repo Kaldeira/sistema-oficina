@@ -77,13 +77,16 @@ insert into mecanico (nome, telefone) values
 
 insert into cliente (nome, telefone, email, cpf, endereco) values
 ('Carlos Souza', '11988887777', 'carlos@gmail.com', '123.456.789-00', 'Rua A, 123, São Paulo'),
-('Ana Lima', '11977776666', 'ana.lima@hotmail.com', '987.654.321-00', 'Av. B, 456, São Paulo');
+('Ana Lima', '11977776666', 'ana.lima@hotmail.com', '987.654.321-00', 'Av. B, 456, São Paulo'),
+('Italo Souza', '6140028922', 'italo@gmail.com', '000.123.456.99', 'Lago Sul, Distrito Federal');
 
 insert into carro (idCliente, modelo, fabricante, ano, placa, cor, caracteristicas, imagem, status) values
-(1, 'Civic EXL', 'Honda', 2020, 'ABC1D23', 'Prata', 'Troca de Óleo e Alinhamento', 'civic2020.jpg', 'Finalizado'),
+(1, 'Civic Type R', 'Honda', 2020, 'ABC1D23', 'Azul', 'Troca de Óleo e Alinhamento', 'civic2020.jpg', 'Finalizado'),
 (2, 'Onix LTZ', 'Chevrolet', 2019, 'XYZ9Z99', 'Preto', 'Problema no cambio', 'onix2019.jpg', 'Manutencao'),
 (1, 'Golf GTI', 'Volkswagen', 2018, 'GTI2025', 'Vermelho', 'Fazer Stage 2', 'golfgti2018.jpg', 'Manutencao'),
 (2, 'LaFerrari', 'Ferarri', 2021, 'FER1234', 'Vermelho', 'Troca de pastilhas de freio dianteiras', 'laferrari.jpg', 'Finalizado'),
+(2, 'GTR R35', 'Nissan', 2019, 'GTR1234', 'Prata', 'Revisao Geral', 'R35.jpg', 'Manutencao'),
+(3, 'RS3 Sedan', 'Audi', 2016, 'RS31234', 'Azul', 'Troca de Óleo', 'A3.jpg', 'Manutencao'),
 (1, 'Corolla Altis', 'Toyota', 2022, 'CORA222', 'Branco', 'Revisão completa', 'corolla2022.jpg', 'Manutencao');
 
 insert into servico (idMecanico, idCarro, idUsuario, dataServico, descricao) values

@@ -58,10 +58,15 @@
                 echo '<td>' . $servico['nome'] . '</td>';
                 echo '<td>' . $servico['mecanico'] . '</td>';
                 echo '<td>' . $servico['userName'] . '</td>';
-                echo '<td>
-                <a href="ListarRelatorio.php?idex=' . $servico['idServico'] . '"class="btn btn-editar">Ver Relatorio</a> 
-                  <a href="../Controle/ExcluirServico.php?idex=' . $servico['idServico'] . '"class="btn btn-excluir">Cancelar</a> 
-                </td>';
+                echo '<td>';
+
+                echo '<a href="ListarRelatorio.php?idex=' . $servico['idServico'] . '"class="btn btn-editar">Ver Relatorio</a>';
+
+                if ($_SESSION['nivel'] == 1) {
+                    echo '<a href="../Controle/ExcluirServico.php?idex=' . $servico['idServico'] . '"class="btn btn-excluir">Cancelar</a>';
+                }
+                
+                echo '</td>';
                 echo '</tr>';
             }
 
