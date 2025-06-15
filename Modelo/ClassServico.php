@@ -5,9 +5,11 @@ Class ClassServico extends ClassCarro
 {
     private $idServico;
     private $idMecanico;
+    private $idUsuario;
     private $idCarro;
     private $descricao;
     private $dataServico;
+    
 
     function getIdServico()
     {
@@ -32,7 +34,10 @@ Class ClassServico extends ClassCarro
     {
         return $this->idMecanico;
     }
-
+    function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
     
     function setIdServico($idServico)
     {
@@ -57,6 +62,10 @@ Class ClassServico extends ClassCarro
     function setIdMecanico($idMecanico)
     {
         $this->idMecanico = $idMecanico;
+    }
+    function setIdUsuario($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
     }
 }
 

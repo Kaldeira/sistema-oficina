@@ -40,7 +40,7 @@ class ClassCarroDAO
                 $imagem = $carroExistente['imagem'];
             }
 
-            $sql = "UPDATE carro SET modelo = ?, fabricante = ?, ano = ?, placa = ?, cor = ?, caracteristicas = ?, imagem = ? WHERE idCarro = ?";
+            $sql = "UPDATE carro SET modelo = ?, fabricante = ?, ano = ?, placa = ?, cor = ?, caracteristicas = ?, imagem = ?, idCliente = ? WHERE idCarro = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(1, $alterarCarro->getModelo());
             $stmt->bindValue(2, $alterarCarro->getFabricante());
@@ -49,7 +49,8 @@ class ClassCarroDAO
             $stmt->bindValue(5, $alterarCarro->getCor());
             $stmt->bindValue(6, $alterarCarro->getCaracteristicas());
             $stmt->bindValue(7, $imagem);
-            $stmt->bindValue(8, $alterarCarro->getIdCarro());
+            $stmt->bindValue(8, $alterarCarro->getIdCliente());
+            $stmt->bindValue(9, $alterarCarro->getIdCarro());
 
             return $stmt->execute();
         } catch (PDOException $exc) {

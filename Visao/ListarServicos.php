@@ -22,7 +22,8 @@
                 <th>Veiculo</th>
                 <th>Placa</th>
                 <th>Cliente</th>
-                <th>Mecanico</th>
+                <th>Mecânico</th>
+                <th>Usuário</th>
                 <th>Relatório</th>
             </tr>
         </thead>
@@ -46,7 +47,7 @@
             $classServicoDAO = new ClassServicoDAO();
             $servicos = $classServicoDAO->listarServicosJoin();
 
-           // var_dump($servicos);
+            // var_dump($servicos);
 
             foreach ($servicos as $servico) {
                 echo '<tr>';
@@ -56,9 +57,10 @@
                 echo '<td>' . $servico['placa'] . '</td>';
                 echo '<td>' . $servico['nome'] . '</td>';
                 echo '<td>' . $servico['mecanico'] . '</td>';
+                echo '<td>' . $servico['userName'] . '</td>';
                 echo '<td>
-                <a href="ListarRelatorio.php?idex=' .$servico['idServico'] . '"class="btn btn-editar">Ver Relatorio</a> 
-                  <a href="../Controle/ExcluirServico.php?idex=' .$servico['idServico'] . '"class="btn btn-excluir">Cancelar</a> 
+                <a href="ListarRelatorio.php?idex=' . $servico['idServico'] . '"class="btn btn-editar">Ver Relatorio</a> 
+                  <a href="../Controle/ExcluirServico.php?idex=' . $servico['idServico'] . '"class="btn btn-excluir">Cancelar</a> 
                 </td>';
                 echo '</tr>';
             }

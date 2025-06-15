@@ -5,6 +5,12 @@ require_once "../Modelo/ClassServico.php";
 require_once "../Modelo/DAO/ClassServicoDAO.php";
 require_once '../Modelo/ClassServicoItem.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+$idUsuario = $_SESSION['idUsuario'];
+
 $id = @$_GET['idex'];
 $acao = $_GET['ACAO'];
 
@@ -23,18 +29,18 @@ $novoCarro = new ClassServico();
 $novoCarro->setIdCarro($id);
 $novoCarro->setDescricao($descricaoServico);
 $novoCarro->setIdMecanico($idMecanico);
+$novoCarro->setIdUsuario($idUsuario);
 
 $finalizado = true;
 
-var_dump($novoCarro);
+//var_dump($novoCarro);
 
 //printf("<br>acao: %s", $acao);
 
 $url = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/ListarCarros.php';
 
-
 $servicoDAO = new ClassServicoDAO();
-$idServico = $servicoDAO->inserirServico($idCarro, $idMecanico, $descricaoServico);
+$idServico = $servicoDAO->inserirServico($idCarro, $idMecanico, $descricaoServico, $idUsuario);
 
 if (!$idServico) {
     echo "<script> alert('Não foi possível finalizar o carro, erro no serviço!');

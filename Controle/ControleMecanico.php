@@ -14,7 +14,7 @@ $novo->setTelefone($_POST['telefone']);
 var_dump($novo);
 
 $urlAlt = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/AlterarMecanico.php';
-$urlCad = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/CadastrarMecanico.php';
+$urlCad = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/CadastroMecanico.php';
 $url = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/ListarMecanicos.php';
 
 

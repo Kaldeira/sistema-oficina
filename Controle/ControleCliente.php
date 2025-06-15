@@ -19,7 +19,7 @@ $novo->setEndereco($_POST['endereco']);
 var_dump($novo);
 
 $urlAlt = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/AlterarCliente.php';
-$urlCad = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/CadastrarCliente.php';
+$urlCad = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/CadastroCliente.php';
 $url = dirname($_SERVER['PHP_SELF'], 2) . '/Visao/ListarClientes.php';
 
 $classDAO = new ClassClienteDAO();
@@ -29,7 +29,7 @@ switch ($acao) {
         if ($status >= 1) {
             header('Location:../Visao/ListarClientes.php?&MSG= Cadastro realizado com sucesso!');
         } else {
-            echo "<script> alert('Não foi possivel realizar o cadastro!');
+            echo "<script> alert('Não foi possivel realizar o cadastro! Talvez este CPF já esteja cadastrado!');
         window.location.href = '$urlCad';
       </script>";
         }
@@ -39,7 +39,7 @@ switch ($acao) {
         if ($status == 1) {
             header('Location:../Visao/ListarClientes.php?&MSG= Alteração feita com sucesso!');
         } else {
-            echo "<script> alert('Não foi possível alterar!');
+            echo "<script> alert('Não foi possível alterar! Talvez este CPF já esteja cadastrado!');
         window.location.href = '$urlAlt?idex=$id';
       </script>";
         }

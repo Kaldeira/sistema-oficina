@@ -24,7 +24,7 @@ idCliente int auto_increment primary key,
 nome varchar(80) not null,
 telefone varchar(80) not null,
 email varchar(120) not null,
-cpf varchar(14) not null unique,
+cpf varchar(20) not null unique,
 endereco varchar(200) not null,
 dataCadastro datetime default current_timestamp
 );
@@ -48,6 +48,7 @@ foreign key (idCliente) references cliente(idCliente)
 create table servico (
 idServico int auto_increment primary key,
 idMecanico int,
+idUsuario int,
 idCarro int,
 descricao TEXT,
 dataServico datetime default current_timestamp,
@@ -85,9 +86,9 @@ insert into carro (idCliente, modelo, fabricante, ano, placa, cor, caracteristic
 (2, 'LaFerrari', 'Ferarri', 2021, 'FER1234', 'Vermelho', 'Troca de pastilhas de freio dianteiras', 'laferrari.jpg', 'Finalizado'),
 (1, 'Corolla Altis', 'Toyota', 2022, 'CORA222', 'Branco', 'Revisão completa', 'corolla2022.jpg', 'Manutencao');
 
-insert into servico (idMecanico, idCarro, dataServico, descricao) values
-(1, 1, '2025-05-10 08:30:00', 'Troca de pastilhas de freio dianteiras, alinhamento e balanceamento realizados.'),
-(2, 4, '2025-05-13 11:00:00', 'Troca de pastilhas de freio dianteiras na LaFerrari.');
+insert into servico (idMecanico, idCarro, idUsuario, dataServico, descricao) values
+(1, 1, 2, '2025-05-10 08:30:00', 'Troca de pastilhas de freio dianteiras, alinhamento e balanceamento realizados.'),
+(2, 4, 2, '2025-05-13 11:00:00', 'Troca de pastilhas de freio dianteiras na LaFerrari.');
 
 insert into servico_item (idServico, descricao, valor) values
 (1, 'Troca de pastilhas de freio dianteiras', 300.00),
@@ -162,10 +163,10 @@ inner join carro c on s.idCarro = c.idCarro
 inner join cliente cli on c.idCliente = cli.idCliente
 inner join mecanico mec on s.idMecanico = mec.idMecanico;
 
-SELECT s.descricao, si.idItem, si.descricao as descricaoItem, si.valor, c.modelo, cli.nome, mec.nome as mecNome
+SELECT s.descricao, si.idItem, si.descricao as descricaoItem, si.valor, c.modelo, cli.nome, mec.nome as mecNome, us.login as userName
         from servico s 
         inner join carro c on s.idCarro = c.idCarro 
         inner join servico_item si on s.idServico = si.idServico 
         inner join cliente cli on c.idCliente = cli.idCliente
         inner join mecanico mec on s.idMecanico = mec.idMecanico
-        where si.idServico = 1;
+        inner join usuario us on s.idUsuario = us.idUsuario;

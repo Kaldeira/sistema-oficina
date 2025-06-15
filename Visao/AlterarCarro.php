@@ -33,7 +33,7 @@
 
     //printf("ID: $id");
     //echo "<br>";
-   // var_dump($novoCarro);
+    // var_dump($novoCarro);
     ?>
 
     <div class="container">
@@ -66,9 +66,9 @@
             <label for="cliente">Cliente:</label>
             <select name="cliente" id="cliente" style="    font-size: 14px; padding: 15px; border: 1px solid #333; border-radius: 8px; width: 100%; background-color: #2b2b2b; color: #f0f0f0; resize: none;">
                 <?php
-
                 foreach ($clientes as $cliente) {
-                    echo "<option value='" . $cliente['idCliente'] . "'>" . $cliente['nome'] . "</option>";
+                    $selected = ($cliente['idCliente'] == $novoCarro['idCliente']) ? 'selected' : '';
+                    echo "<option value='" . $cliente['idCliente'] . "' $selected>" . $cliente['nome'] . "</option>";
                 }
                 ?>
             </select>

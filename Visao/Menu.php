@@ -10,6 +10,7 @@ if (!isset($_SESSION['login'])) {
 }
 
 $nivel = $_SESSION['nivel'];
+$idLogin = $_SESSION['idUsuario'];
 
 //echo "Bem-vindo, " . $_SESSION['nivel'];
 

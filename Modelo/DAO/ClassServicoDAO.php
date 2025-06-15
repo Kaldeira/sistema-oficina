@@ -19,19 +19,20 @@ class ClassServicoDAO
         }
     }
 
-    public function inserirServico($idCarro, $idMecanico, $descricao)
+    public function inserirServico($idCarro, $idMecanico, $descricao, $idUsuario)
     {
         try {
             $pdo = Conexao::getInstance();
-            $sql = "INSERT INTO servico (idCarro, idMecanico, descricao) VALUES (:idCarro, :idMecanico, :descricao)";
+            $sql = "INSERT INTO servico (idCarro, idMecanico, descricao, idUsuario) VALUES (:idCarro, :idMecanico, :descricao, :idUsuario)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':idCarro', $idCarro);
             $stmt->bindValue(':idMecanico', $idMecanico);
             $stmt->bindValue(':descricao', $descricao);
+            $stmt->bindValue(':idUsuario', $idUsuario);
             $stmt->execute();
             return $pdo->lastInsertId(); // Retorna o id do serviço inserido
         } catch (PDOException $e) {
-            echo "Erro ao inserir serviço: " . $e->getMessage();
+            //echo "Erro ao inserir serviço: " . $e->getMessage();
             return false;
         }
     }
@@ -89,11 +90,13 @@ class ClassServicoDAO
             c.modelo,
             c.placa,
             cli.nome,
-            mec.nome as mecanico
+            mec.nome as mecanico,
+            us.login as userName
             from servico s
             inner join carro c on s.idCarro = c.idCarro
             inner join cliente cli on c.idCliente = cli.idCliente
-            inner join mecanico mec on s.idMecanico = mec.idMecanico;";
+            inner join mecanico mec on s.idMecanico = mec.idMecanico
+            inner join usuario us on s.idUsuario = us.idUsuario;";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
